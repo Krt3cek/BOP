@@ -630,7 +630,7 @@ namespace MOP
                 ExceptionManager.New(ex, false, "DYNAMIC_DRAW_DISTANCE_LOAD_ERROR");
             }
 
-            if (MopSettings.Mode != PerformanceMode.Safe)
+            if (MopSettings.Mode != PerformanceMode.Safe && MopSettings.Mode != PerformanceMode.Multiplayer)
             {
                 try
                 {
@@ -901,8 +901,8 @@ namespace MOP
                     }
                 }
 
-                // Safe mode prevents toggling elemenets that MAY case some issues (vehicles, items, etc.)
-                if (MopSettings.Mode == PerformanceMode.Safe)
+                // Safe mode and Multiplayer mode prevent toggling elements that MAY cause some issues (vehicles, items, etc.)
+                if (MopSettings.Mode == PerformanceMode.Safe || MopSettings.Mode == PerformanceMode.Multiplayer)
                 {
                     yield return new WaitForSeconds(.7f);
                     continue;
@@ -1357,7 +1357,7 @@ namespace MOP
 
             ModConsole.Log("[MOP] Toggled WORLD OBJECTS");
 
-            if (MopSettings.Mode == PerformanceMode.Safe) return;
+            if (MopSettings.Mode == PerformanceMode.Safe || MopSettings.Mode == PerformanceMode.Multiplayer) return;
 
             // Items
             for (int i = 0; i < ItemsManager.Instance.Count; i++)

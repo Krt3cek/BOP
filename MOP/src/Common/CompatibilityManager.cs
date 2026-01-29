@@ -17,6 +17,10 @@
 using MSCLoader;
 using UnityEngine;
 using MOP.Items;
+using System.Diagnostics;
+using System.Linq;
+using System;
+using System.IO;
 
 namespace MOP.Common
 {
@@ -36,6 +40,9 @@ namespace MOP.Common
         static readonly Vector3 AdvancedBackpackPosition = new Vector3(630f, 10f, 1140f);
         const int AdvancedBackpackDistance = 30;
 
+        // WreckMP Multiplayer
+        static bool WreckMPActive { get; set; }
+
         static readonly string[] incompatibleMods = { "KruFPS", "ImproveFPS", "OptimizeMSC", "ZZDisableAll", "DisableAll" };
 
         public static void Initialize()
@@ -44,6 +51,9 @@ namespace MOP.Common
             // AdvancedBackpack = MSCLoader.ModLoader.Mods.Any(m => m.ID == "AdvancedBackpack");
             CarryMore = false;
             AdvancedBackpack = false;
+            
+            // Detect WreckMP multiplayer mod
+            WreckMPActive = DetectWreckMP();
         }
 
         public static bool IsInBackpack(ItemBehaviour behaviour)
@@ -59,6 +69,64 @@ namespace MOP.Common
 
             return false;
         }
+
+        /// <summary>
+        /// Detects if WreckMP multiplayer mod is active
+        /// </summary>
+        /// <returns>True if WreckMP is detected, false otherwise</returns>
+        private static bool DetectWreckMP()
+        {
+            try
+            {
+                // Method 1: Check for WreckMP GameObjects in scene
+                if (GameObject.Find("WreckMP") != null || 
+                    GameObject.Find("WreckMP_Manager") != null ||
+                    GameObject.Find("WreckMP_Network") != null)
+                {
+                    ModConsole.Log("[MOP] WreckMP detected via GameObject check");
+                    return true;
+                }
+
+                // Method 2: Check for WreckMP processes
+                var processes = Process.GetProcessesByName("WreckMPLauncher");
+                if (processes.Length > 0)
+                {
+                    ModConsole.Log("[MOP] WreckMP detected via process check");
+                    return true;
+                }
+
+                // Method 3: Check for common WreckMP files
+                string gamePath = Application.dataPath.Replace("My Summer Car_Data", "");
+                string wreckmpDir = Path.Combine(gamePath, "WreckMP");
+                string modsDir = Path.Combine(gamePath, "Mods");
+                string[] wreckmpPaths = {
+                    Path.Combine(gamePath, "WreckMP.dll"),
+                    Path.Combine(wreckmpDir, "WreckMP.dll"),
+                    Path.Combine(modsDir, "WreckMP")
+                };
+
+                foreach (string path in wreckmpPaths)
+                {
+                    if (File.Exists(path) || Directory.Exists(path))
+                    {
+                        ModConsole.Log("[MOP] WreckMP detected via file check");
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                ModConsole.LogError($"[MOP] Error detecting WreckMP: {ex.Message}");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks if WreckMP multiplayer mod is active
+        /// </summary>
+        public static bool IsWreckMPActive => WreckMPActive;
 
         public static bool IsConfilctingModPresent(out string conflictingModName)
         {

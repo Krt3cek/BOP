@@ -172,6 +172,60 @@ namespace MOP.Common
             Mode = PerformanceMode.Safe;
         }
 
+        /// <summary>
+        /// Forces MOP to use Multiplayer compatibility mode when WreckMP is detected
+        /// </summary>
+        public static void ForceMultiplayerMode()
+        {
+            Mode = PerformanceMode.Multiplayer;
+            ModConsole.Log("[MOP] Forced Multiplayer compatibility mode due to WreckMP detection");
+            
+            // Disable problematic features for multiplayer
+            DisableMultiplayerIncompatibleFeatures();
+        }
+
+        /// <summary>
+        /// Disables features that cause issues in multiplayer
+        /// </summary>
+        private static void DisableMultiplayerIncompatibleFeatures()
+        {
+            // These features can cause desync issues in multiplayer
+            // We disable them automatically when WreckMP is detected
+            
+            // Disable empty bottle destruction (can cause item desync)
+            if (MOP.DestroyEmptyBottles != null)
+            {
+#if PRO
+                MOP.DestroyEmptyBottles.Value = false;
+#else
+                MOP.DestroyEmptyBottles.SetValue(false);
+#endif
+                ModConsole.Log("[MOP] Disabled 'Destroy Empty Bottles' for multiplayer compatibility");
+            }
+
+            // Disable empty items removal (can cause item desync)
+            if (MOP.DisableEmptyItems != null)
+            {
+#if PRO
+                MOP.DisableEmptyItems.Value = false;
+#else
+                MOP.DisableEmptyItems.SetValue(false);
+#endif
+                ModConsole.Log("[MOP] Disabled 'Disable Empty Items' for multiplayer compatibility");
+            }
+
+            // Disable skidmarks removal (visual only, but saves performance)
+            if (MOP.AlwaysDisableSkidmarks != null)
+            {
+#if PRO
+                MOP.AlwaysDisableSkidmarks.Value = true;
+#else
+                MOP.AlwaysDisableSkidmarks.SetValue(true);
+#endif
+                ModConsole.Log("[MOP] Enabled 'Disable Skidmarks' for multiplayer performance");
+            }
+        }
+
         internal static void ToggleBackgroundRunning()
         {
             Application.runInBackground = MOP.KeepRunningInBackground.GetValue();

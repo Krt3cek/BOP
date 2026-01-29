@@ -46,6 +46,25 @@ namespace MOP
         
         public override void ModSetup()
         {
+            // Initialize CompatibilityManager early to detect WreckMP before game loads
+            CompatibilityManager.Initialize();
+            
+            // Check if WreckMP is active and switch to multiplayer mode if needed
+            if (CompatibilityManager.IsWreckMPActive)
+            {
+                ModConsole.Log("[MOP] WreckMP detected in ModSetup! Switching to Multiplayer compatibility mode.");
+                MopSettings.ForceMultiplayerMode();
+                
+                // Show notification to user
+                ModUI.ShowMessage("WreckMP multiplayer mod detected!\n\n" +
+                                 "MOP has automatically switched to Multiplayer compatibility mode.\n" +
+                                 "Some features have been disabled to prevent desync issues:\n" +
+                                 "• Empty bottle destruction disabled\n" +
+                                 "• Empty items removal disabled\n" +
+                                 "• Skidmarks disabled for performance\n\n" +
+                                 "This ensures stable multiplayer experience.", "MOP - Multiplayer Mode");
+            }
+            
             SetupFunction(Setup.OnLoad, OnModLoad);
             SetupFunction(Setup.OnMenuLoad, OnMenuLoad);
             SetupFunction(Setup.ModSettings, OnModSettings);
@@ -399,6 +418,7 @@ namespace MOP
             {
                 modConfigPath = ModLoader.GetModSettingsFolder(this);
             }
+            
             MopSettings.UpdateFramerateLimiter();
             MopSettings.UpdatePerformanceMode();
             MopSettings.UpdateShadows();
@@ -414,9 +434,6 @@ namespace MOP
 
             // Create MOP game object
             GameObject mop = new GameObject("MOP");
-
-            // Initialize CompatibiliyManager
-            CompatibilityManager.Initialize();
 
             // Add Hypervisor class
             mop.AddComponent<Hypervisor>();

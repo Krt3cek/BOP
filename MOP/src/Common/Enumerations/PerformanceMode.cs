@@ -21,6 +21,7 @@ namespace MOP.Common.Enumerations
         Performance,
         Balanced,
         Quality,
-        Safe
+        Safe,
+        Multiplayer
     }
 }
