@@ -1,7 +1,5 @@
 # Modern Optimization Plugin
 
-**This is a fork of [Athlon007/MOP](https://github.com/Athlon007/MOP)**
-
 [![](https://img.shields.io/github/downloads/Athlon007/MOP/total?style=for-the-badge)](https://github.com/Athlon007/MOP/releases)
 [![](https://img.shields.io/github/v/release/Athlon007/MOP?style=for-the-badge)](https://github.com/Athlon007/MOP/releases)
 [![](https://img.shields.io/github/v/release/Athlon007/MOP?include_prereleases&label=Beta&style=for-the-badge)](https://github.com/Athlon007/MOP/releases)
