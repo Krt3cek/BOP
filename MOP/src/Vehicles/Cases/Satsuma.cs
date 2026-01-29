@@ -644,6 +644,18 @@ namespace MOP.Vehicles.Cases
         /// </summary>
         internal override void ToggleActive(bool enabled)
         {
+            // In WRECKMP multiplayer, only disable Satsuma that is far away to preserve nearby animations and sounds
+            if (CompatibilityManager.IsWreckMPActive)
+            {
+                // Calculate distance to player
+                float distanceToPlayer = Vector3.Distance(transform.position, Hypervisor.Instance.GetPlayer().transform.position);
+                // Only disable if Satsuma is more than 100 meters away (beyond visible/hearing range)
+                if (distanceToPlayer < 100f)
+                {
+                    return;
+                }
+            }
+
             if (this.IsPlayerInThisCar())
             {
                 enabled = true;
@@ -705,6 +717,18 @@ namespace MOP.Vehicles.Cases
 
         public override void ToggleUnityCar(bool enabled)
         {
+            // In WRECKMP multiplayer, only disable Satsuma physics for vehicles that are far away
+            if (CompatibilityManager.IsWreckMPActive)
+            {
+                // Calculate distance to player
+                float distanceToPlayer = Vector3.Distance(transform.position, Hypervisor.Instance.GetPlayer().transform.position);
+                // Only disable if Satsuma is more than 100 meters away (beyond visible/hearing range)
+                if (distanceToPlayer < 100f)
+                {
+                    return;
+                }
+            }
+
             // Satsuma in inspection zone and mod wants to disable it?
             // Set enabled to true, so it won't be disabled.
             if (!enabled && IsSatsumaInInspectionArea || IsRopeHooked() || !IsOnGround())

@@ -219,6 +219,26 @@ namespace MOP.Vehicles
         {
             if (gameObject == null || gameObject.activeSelf == enabled || !IsActive) return;
 
+            // In WRECKMP multiplayer, only disable vehicles that are far away to preserve nearby animations and sounds
+            if (CompatibilityManager.IsWreckMPActive)
+            {
+                // Calculate distance to player
+                float distanceToPlayer = Vector3.Distance(transform.position, Hypervisor.Instance.GetPlayer().transform.position);
+                // Only disable if vehicle is more than 100 meters away (beyond visible/hearing range)
+                if (distanceToPlayer < 100f)
+                {
+                    return;
+                }
+            }
+
+            // If player is sitting in this specific vehicle, **NEVER** disable it.
+            if (IsPlayerInThisCar())
+                enabled = true;
+
+            // Prevent disabling car physics if the rope is hooked
+            if (IsRopeHooked())
+                enabled = true;
+
             // If we're disabling a car, set the audio child parent to TemporaryAudioParent, and save the position and rotation.
             // We're doing that BEFORE we disable the object.
             if (!enabled)
@@ -228,10 +248,7 @@ namespace MOP.Vehicles
                 Position = transform.localPosition;
                 Rotation = transform.localRotation;
 
-                if (colliders)
-                {
-                    colliders.parent = temporaryParent;
-                }
+                colliders.parent = temporaryParent;
             }
 
             gameObject.SetActive(enabled);
@@ -241,12 +258,8 @@ namespace MOP.Vehicles
             if (enabled)
             {
                 MoveNonDisableableObjects(null);
-
-                if (colliders)
-                {
-                    colliders.parent = transform;
-                    colliders.localPosition = colliderPosition;
-                }
+                colliders.parent = transform;
+                colliders.localPosition = colliderPosition;
             }
         }
 
@@ -258,6 +271,18 @@ namespace MOP.Vehicles
         {
             if ((gameObject == null) || !IsActive)
                 return;
+
+            // In WRECKMP multiplayer, only disable vehicle physics for vehicles that are far away
+            if (CompatibilityManager.IsWreckMPActive)
+            {
+                // Calculate distance to player
+                float distanceToPlayer = Vector3.Distance(transform.position, Hypervisor.Instance.GetPlayer().transform.position);
+                // Only disable if vehicle is more than 100 meters away (beyond visible/hearing range)
+                if (distanceToPlayer < 100f)
+                {
+                    return;
+                }
+            }
 
             if (rb.isKinematic == !enabled && carDynamics.enabled == enabled && rb.useGravity)
                 return;
@@ -414,6 +439,12 @@ namespace MOP.Vehicles
 
         protected virtual void DisableHooksResetting()
         {
+            // Skip hook processing if WreckMP is active to prevent null reference exceptions
+            if (CompatibilityManager.IsWreckMPActive)
+            {
+                return;
+            }
+
             // Hook HookFront and HookRear
             // Get hooks first
             Transform hookFront = transform.Find("HookFront");
@@ -423,13 +454,15 @@ namespace MOP.Vehicles
             if (hookFront != null)
             {
                 fsmHookFront = hookFront.GetComponent<PlayMakerFSM>();
-                fsmHookFront.Fsm.RestartOnEnable = false;
+                if (fsmHookFront != null)
+                    fsmHookFront.Fsm.RestartOnEnable = false;
             }
 
             if (hookRear != null)
             {
                 fsmHookRear = hookRear.GetComponent<PlayMakerFSM>();
-                fsmHookRear.Fsm.RestartOnEnable = false;
+                if (fsmHookRear != null)
+                    fsmHookRear.Fsm.RestartOnEnable = false;
             }
         }
 

@@ -1342,6 +1342,13 @@ namespace MOP
         {
             ModConsole.Log($"[MOP] Toggling all to {enabled.ToString().ToUpper()} in mode {mode.ToString().ToUpper()}");
 
+            // Skip most toggle operations if WreckMP is active to prevent null reference exceptions
+            if (CompatibilityManager.IsWreckMPActive && mode != ToggleAllMode.OnSave)
+            {
+                ModConsole.Log("[MOP] Skipping ToggleAll due to WreckMP being active");
+                return;
+            }
+
             // World objects
             for (int i = 0; i < worldObjectManager.Count; i++)
             {
@@ -1367,6 +1374,8 @@ namespace MOP
                 try
                 {
                     ItemBehaviour item = ItemsManager.Instance[i];
+                    if (item == null) continue;
+                    
                     item.Toggle(enabled);
 
                     // We're freezing the object on save, so it won't move at all.
@@ -1433,7 +1442,7 @@ namespace MOP
             {
                 if (mode == ToggleAllMode.OnSave)
                 {
-                    Satsuma.Instance.OnSaveGlueAll();
+                    Satsuma.Instance?.OnSaveGlueAll();
                 }
             }
             catch (Exception ex)

@@ -16,6 +16,7 @@
 
 using UnityEngine;
 using MOP.Vehicles.Cases;
+using MOP.Common;
 
 namespace MOP.Helpers
 {
@@ -32,7 +33,19 @@ namespace MOP.Helpers
 
         public void Initialize(Vector3 size)
         {
-            referenceObject = Satsuma.Instance.GetCarBody();
+            // Skip initialization if WreckMP is active to prevent null reference exceptions
+            if (CompatibilityManager.IsWreckMPActive)
+            {
+                return;
+            }
+
+            referenceObject = Satsuma.Instance?.GetCarBody();
+            if (referenceObject == null)
+            {
+                ModConsole.LogError("[MOP] SatsumaInArea: Could not get Satsuma car body reference");
+                return;
+            }
+            
             collider = gameObject.AddComponent<BoxCollider>();
             collider.isTrigger = true;
             collider.size = size;

@@ -17,6 +17,7 @@
 using UnityEngine;
 
 using MOP.Managers;
+using MOP.Common;
 using MOP.Common.Enumerations;
 using MOP.FSM;
 using MOP.Vehicles.Managers;
@@ -79,6 +80,12 @@ namespace MOP.Vehicles.Cases
 
         protected override void DisableHooksResetting()
         {
+            // Skip hook processing if WreckMP is active to prevent null reference exceptions
+            if (CompatibilityManager.IsWreckMPActive)
+            {
+                return;
+            }
+
             // Hook HookFront and HookRear
             // Get hooks first
             Transform hookFront = transform.Find("Frontloader/ArmPivot/Arm/LoaderPivot/Loader/RopePoint/HookFront");
@@ -88,13 +95,15 @@ namespace MOP.Vehicles.Cases
             if (hookFront != null)
             {
                 fsmHookFront = hookFront.GetComponent<PlayMakerFSM>();
-                fsmHookFront.Fsm.RestartOnEnable = false;
+                if (fsmHookFront != null)
+                    fsmHookFront.Fsm.RestartOnEnable = false;
             }
 
             if (hookRear != null)
             {
                 fsmHookRear = hookRear.GetComponent<PlayMakerFSM>();
-                fsmHookRear.Fsm.RestartOnEnable = false;
+                if (fsmHookRear != null)
+                    fsmHookRear.Fsm.RestartOnEnable = false;
             }
         }
     }

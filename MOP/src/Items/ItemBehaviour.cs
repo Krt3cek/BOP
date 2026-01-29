@@ -845,9 +845,15 @@ namespace MOP.Items
 
         public void ToggleLOD(bool enabled)
         {
+            // Skip LOD toggling if WreckMP is active to prevent null reference exceptions
+            if (CompatibilityManager.IsWreckMPActive)
+            {
+                return;
+            }
+
             if (dummy != null)
             {
-                if (this.transform.root == Satsuma.Instance.transform)
+                if (Satsuma.Instance != null && this.transform.root == Satsuma.Instance.transform)
                 {
                     enabled = false;
                 }
