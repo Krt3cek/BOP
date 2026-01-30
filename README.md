@@ -13,30 +13,6 @@ Originally based on [MOP by Athlon007](https://github.com/Athlon007/MOP), which 
 
 **Results may vary!**
 
-## 🆕 What's New in BOP 1.0.0
-
-### Fork Changes
-- **Complete Rebrand**: Updated from "Modern Optimization Plugin" to "Best Optimization Plugin"
-- **New Mod ID**: Changed from "MOP" to "BOP" for proper identification
-- **Updated Version**: Reset to 1.0.0 for the new fork release
-- **All User-Facing Elements**: Updated loading screens, messages, tooltips, and error dialogs
-- **New Repository**: Moved to [Krt3cek/BOP](https://github.com/Krt3cek/BOP) GitHub repository
-
-### Preserved Features
-- ✅ All original MOP performance optimizations
-- ✅ Vehicle, item, and world object management systems
-- ✅ Multiplayer compatibility (WreckMP support)
-- ✅ Rule files system and automatic updates
-- ✅ All settings and configuration options
-- ✅ Debug and diagnostic tools
-
-### Technical Updates
-- Updated all debug logs to show `[BOP]` instead of `[MOP]`
-- Changed game object prefixes from `MOP_` to `BOP_` where appropriate
-- Updated compiled DLL name from `MOP.dll` to `BOP.dll`
-- Maintained full compatibility with existing MOP rule files
-- Preserved all original functionality and optimizations
-
 ## Requirements
 
 - **Latest LEGAL COPY** of My Summer Car
