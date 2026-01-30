@@ -83,7 +83,9 @@ namespace MOP.Common
                     GameObject.Find("WreckMP_Manager") != null ||
                     GameObject.Find("WreckMP_Network") != null)
                 {
+#if DEBUG
                     ModConsole.Log("[MOP] WreckMP detected via GameObject check");
+#endif
                     return true;
                 }
 
@@ -91,7 +93,9 @@ namespace MOP.Common
                 var processes = Process.GetProcessesByName("WreckMPLauncher");
                 if (processes.Length > 0)
                 {
+#if DEBUG
                     ModConsole.Log("[MOP] WreckMP detected via process check");
+#endif
                     return true;
                 }
 
@@ -109,7 +113,9 @@ namespace MOP.Common
                 {
                     if (File.Exists(path) || Directory.Exists(path))
                     {
+#if DEBUG
                         ModConsole.Log("[MOP] WreckMP detected via file check");
+#endif
                         return true;
                     }
                 }
