@@ -1,6 +1,36 @@
 # Changelog
 
-## 3.10.4 (10.12.2022)
+## 1.0.0 (30.01.2026) - BOP Fork Release
+
+### Added
+- Forked from MOP (Modern Optimization Plugin) 3.10.4 by Athlon007
+- Rebranded to BOP (Best Optimization Plugin)
+- Updated all user-facing elements from MOP to BOP
+- New mod ID changed from "MOP" to "BOP"
+- Updated version to 1.0.0 for new BOP release
+- Added proper attribution to original MOP project
+- Updated GitHub repository links to BOP repository
+- Maintained all original MOP functionality and optimizations
+
+### Changes
+- Updated mod name from "Modern Optimization Plugin" to "Best Optimization Plugin"
+- Changed all loading screen messages from "LOADING MOP..." to "LOADING BOP..."
+- Updated all debug logs and console messages to show "[BOP]" instead of "[MOP]"
+- Modified all error messages and tooltips to reference BOP
+- Updated game object prefixes from "MOP_" to "BOP_" where appropriate
+- Changed compiled DLL name from MOP.dll to BOP.dll
+- Updated README.md with BOP branding and MOP attribution
+
+### Technical
+- Preserved all original MOP performance optimizations
+- Maintained compatibility with existing MOP rule files
+- Kept all vehicle, item, and world object management systems
+- Retained multiplayer compatibility features
+- Preserved all settings and configuration options
+
+---
+
+## 3.10.4 (10.12.2022) - Original MOP Release
 
 ### Bug Fixes
 
