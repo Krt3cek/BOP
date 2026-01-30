@@ -1,6 +1,6 @@
 # Best Optimization Plugin
 
-[![](https://img.shields.io/badge/BOP-1.0.0-blue?style=for-the-badge&logo=appveyor)](https://github.com/Krt3cek/BOP/releases)
+[![](https://img.shields.io/badge/BOP-0.0.2-blue?style=for-the-badge&logo=appveyor)](https://github.com/Krt3cek/BOP/releases)
 [![](https://img.shields.io/badge/License-GPL%20v3-blue?style=for-the-badge)](LICENSE.md)
 
 <img align="right" src="images/icon.png" alt="icon" width=128 />

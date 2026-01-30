@@ -36,7 +36,7 @@ namespace MOP
         public override string ID => "BOP";
         public override string Name => "BEST OPTIMIZATION PLUGIN";
         public override string Author => "Athlon"; //Your Username
-        public override string Version => "1.0.0"; //Version
+        public override string Version => "0.0.2"; //Version
         public const string SubVersion = ""; // NIGHTLY-yyyymmdd | BETA_x | RC_
 #if PRO
         public const string Edition = "Mod Loader Pro";
