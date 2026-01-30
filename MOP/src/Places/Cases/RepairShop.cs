@@ -15,6 +15,7 @@
 // along with this program.If not, see<http://www.gnu.org/licenses/>.
 
 using MOP.FSM;
+using MOP.Common;
 using System.Collections.Generic;
 using UnityEngine;
 using MSCLoader;

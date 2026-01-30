@@ -18,6 +18,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using MOP.Common;
 using System.Collections.Generic;
 using HutongGames.PlayMaker;
 
@@ -156,28 +157,31 @@ namespace MOP
             }
 
             // Fixed Ventii bet resetting to default on cabin load.
-            Transform cabin = GameObject.Find("CABIN").transform;
-            try
+            Transform cabin = GameObject.Find("CABIN")?.transform;
+            if (cabin != null)
             {
-                cabin.Find("Cabin/Ventti/Table/GameManager").GetPlayMaker("Use").Fsm.RestartOnEnable = false;
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.New(ex, false, "VENTII_FIX_ERROR");
-            }
-
-            // Cabin door resetting fix.
-            // In WRECKMP multiplayer, allow FSM restart to maintain door state synchronization
-            try
-            {
-                if (!CompatibilityManager.IsWreckMPActive)
+                try
                 {
-                    cabin.Find("Cabin/Door/Pivot/Handle").gameObject.GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+                    cabin.Find("Cabin/Ventti/Table/GameManager").GetPlayMaker("Use").Fsm.RestartOnEnable = false;
                 }
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.New(ex, false, "CABIN_DOOR_RESET_FIX_ERROR");
+                catch (Exception ex)
+                {
+                    ExceptionManager.New(ex, false, "VENTII_FIX_ERROR");
+                }
+
+                // Cabin door resetting fix.
+                // In WRECKMP multiplayer, allow FSM restart to maintain door state synchronization
+                try
+                {
+                    if (!CompatibilityManager.IsWreckMPActive)
+                    {
+                        cabin.Find("Cabin/Door/Pivot/Handle").gameObject.GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ExceptionManager.New(ex, false, "CABIN_DOOR_RESET_FIX_ERROR");
+                }
             }
 
             // Junk cars - setting Load game to null.

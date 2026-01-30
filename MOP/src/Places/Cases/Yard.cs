@@ -18,9 +18,9 @@ using System;
 using HutongGames.PlayMaker;
 using System.Linq;
 using UnityEngine;
+using MOP.Common;
 
 using MOP.FSM;
-using MOP.Common;
 
 namespace MOP.Places
 {
