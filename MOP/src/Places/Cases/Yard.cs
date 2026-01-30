@@ -79,7 +79,13 @@ namespace MOP.Places
                 foreach (Transform door in transform.GetComponentsInChildren<Transform>().Where(t => t.root == transform && t.gameObject.name.Contains("Door") && t.Find("Pivot") != null).ToArray())
                 {
                     if (door.Find("Pivot/Handle") != null)
-                        door.Find("Pivot/Handle").gameObject.GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+                    {
+                        // In WRECKMP multiplayer, allow FSM restart to maintain door state synchronization
+                        if (!CompatibilityManager.IsWreckMPActive)
+                        {
+                            door.Find("Pivot/Handle").gameObject.GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -141,8 +147,12 @@ namespace MOP.Places
             GameObject garageDoors = GameObject.Find("GarageDoors");
             if (garageDoors)
             {
-                garageDoors.transform.Find("DoorLeft/Coll").GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
-                garageDoors.transform.Find("DoorRight/Coll").GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+                // In WRECKMP multiplayer, allow FSM restart to maintain door state synchronization
+                if (!CompatibilityManager.IsWreckMPActive)
+                {
+                    garageDoors.transform.Find("DoorLeft/Coll").GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+                    garageDoors.transform.Find("DoorRight/Coll").GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+                }
             }
         }
 

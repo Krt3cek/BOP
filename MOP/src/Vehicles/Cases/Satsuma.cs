@@ -396,13 +396,21 @@ namespace MOP.Vehicles.Cases
             try
             {
                 // Fixing the door hinges getting stuck.
-                GameObject.Find("door left(Clone)").AddComponent<SatsumaHingeManager>();
-                GameObject.Find("door right(Clone)").AddComponent<SatsumaHingeManager>();
-                GameObject.Find("bootlid(Clone)").AddComponent<SatsumaHingeManager>();
+                // In WRECKMP multiplayer, skip door hinge managers to maintain synchronization
+                if (!CompatibilityManager.IsWreckMPActive)
+                {
+                    GameObject.Find("door left(Clone)").AddComponent<SatsumaHingeManager>();
+                    GameObject.Find("door right(Clone)").AddComponent<SatsumaHingeManager>();
+                    GameObject.Find("bootlid(Clone)").AddComponent<SatsumaHingeManager>();
+                }
 
                 // Fixes doors resetting it's paint colour.
-                GameObject.Find("door left(Clone)").GetPlayMaker("Paint").Fsm.RestartOnEnable = false;
-                GameObject.Find("door right(Clone)").GetPlayMaker("Paint").Fsm.RestartOnEnable = false;
+                // In WRECKMP multiplayer, allow FSM restart to maintain door state synchronization
+                if (!CompatibilityManager.IsWreckMPActive)
+                {
+                    GameObject.Find("door left(Clone)").GetPlayMaker("Paint").Fsm.RestartOnEnable = false;
+                    GameObject.Find("door right(Clone)").GetPlayMaker("Paint").Fsm.RestartOnEnable = false;
+                }
             }
             catch (System.Exception ex)
             {

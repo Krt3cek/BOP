@@ -92,7 +92,11 @@ namespace MOP.Places
             }
 
             // Fix door resetting.
-            transform.Find("LOD/Door/Handle").gameObject.GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+            // In WRECKMP multiplayer, allow FSM restart to maintain door state synchronization
+            if (!CompatibilityManager.IsWreckMPActive)
+            {
+                transform.Find("LOD/Door/Handle").gameObject.GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+            }
 
             cashRegister = GameObject.Find("REPAIRSHOP").transform.Find("LOD/Store/ShopCashRegister");
 

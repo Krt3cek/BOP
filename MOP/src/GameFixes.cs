@@ -167,9 +167,13 @@ namespace MOP
             }
 
             // Cabin door resetting fix.
+            // In WRECKMP multiplayer, allow FSM restart to maintain door state synchronization
             try
             {
-                cabin.Find("Cabin/Door/Pivot/Handle").gameObject.GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+                if (!CompatibilityManager.IsWreckMPActive)
+                {
+                    cabin.Find("Cabin/Door/Pivot/Handle").gameObject.GetComponent<PlayMakerFSM>().Fsm.RestartOnEnable = false;
+                }
             }
             catch (Exception ex)
             {

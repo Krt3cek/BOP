@@ -117,10 +117,14 @@ namespace MOP.Vehicles
 
         protected virtual void LoadCarElements()
         {
-            // Get the object's child which are responsible for audio
-            foreach (Transform audioObject in FindAudioObjects())
+            // In WRECKMP multiplayer, don't manipulate audio objects to maintain synchronization
+            if (!CompatibilityManager.IsWreckMPActive)
             {
-                preventToggleOnObjects.Add(new PreventToggleOnObject(audioObject));
+                // Get the object's child which are responsible for audio
+                foreach (Transform audioObject in FindAudioObjects())
+                {
+                    preventToggleOnObjects.Add(new PreventToggleOnObject(audioObject));
+                }
             }
 
             // Fix for fuel level resetting after respawn
@@ -219,16 +223,11 @@ namespace MOP.Vehicles
         {
             if (gameObject == null || gameObject.activeSelf == enabled || !IsActive) return;
 
-            // In WRECKMP multiplayer, only disable vehicles that are far away to preserve nearby animations and sounds
+            // In WRECKMP multiplayer, never disable vehicles to prevent desync
             if (CompatibilityManager.IsWreckMPActive)
             {
-                // Calculate distance to player
-                float distanceToPlayer = Vector3.Distance(transform.position, Hypervisor.Instance.GetPlayer().transform.position);
-                // Only disable if vehicle is more than 100 meters away (beyond visible/hearing range)
-                if (distanceToPlayer < 100f)
-                {
-                    return;
-                }
+                // Always keep vehicles active in multiplayer to maintain synchronization
+                return;
             }
 
             // If player is sitting in this specific vehicle, **NEVER** disable it.
@@ -241,7 +240,8 @@ namespace MOP.Vehicles
 
             // If we're disabling a car, set the audio child parent to TemporaryAudioParent, and save the position and rotation.
             // We're doing that BEFORE we disable the object.
-            if (!enabled)
+            // In WRECKMP multiplayer, skip audio manipulation to maintain synchronization
+            if (!enabled && !CompatibilityManager.IsWreckMPActive)
             {
                 MoveNonDisableableObjects(temporaryParent);
 
@@ -255,7 +255,8 @@ namespace MOP.Vehicles
 
             // Uppon enabling the object, set the localPosition and localRotation to the object's transform, and change audio source parents to Object
             // We're doing that AFTER we enable the object.
-            if (enabled)
+            // In WRECKMP multiplayer, skip audio manipulation to maintain synchronization
+            if (enabled && !CompatibilityManager.IsWreckMPActive)
             {
                 MoveNonDisableableObjects(null);
                 colliders.parent = transform;
@@ -272,16 +273,11 @@ namespace MOP.Vehicles
             if ((gameObject == null) || !IsActive)
                 return;
 
-            // In WRECKMP multiplayer, only disable vehicle physics for vehicles that are far away
+            // In WRECKMP multiplayer, never disable vehicle physics to prevent desync
             if (CompatibilityManager.IsWreckMPActive)
             {
-                // Calculate distance to player
-                float distanceToPlayer = Vector3.Distance(transform.position, Hypervisor.Instance.GetPlayer().transform.position);
-                // Only disable if vehicle is more than 100 meters away (beyond visible/hearing range)
-                if (distanceToPlayer < 100f)
-                {
-                    return;
-                }
+                // Always keep vehicle physics active in multiplayer to maintain synchronization
+                return;
             }
 
             if (rb.isKinematic == !enabled && carDynamics.enabled == enabled && rb.useGravity)
