@@ -3,7 +3,7 @@
 [![](https://img.shields.io/github/downloads/Krt3cek/BOP/total?style=for-the-badge)](https://github.com/Krt3cek/BOP/releases)
 [![](https://img.shields.io/github/v/release/Krt3cek/BOP?style=for-the-badge)](https://github.com/Krt3cek/BOP/releases)
 [![](https://img.shields.io/github/v/release/Krt3cek/BOP?include_prereleases&label=Beta&style=for-the-badge)](https://github.com/Krt3cek/BOP/releases)
-[![](https://img.shields.io/github/license/Krt3cek/BOP?style=for-the-badge)](LICENSE.md)
+[![](https://img.shields.io/github/license/Athlon007/MOP?style=for-the-badge)](LICENSE.md)
 
 <img align="right" src="images/icon.png" alt="icon" width=128 />
 
