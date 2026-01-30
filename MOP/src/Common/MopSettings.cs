@@ -178,7 +178,9 @@ namespace MOP.Common
         public static void ForceMultiplayerMode()
         {
             Mode = PerformanceMode.Multiplayer;
+#if DEBUG
             ModConsole.Log("[MOP] Forced Multiplayer compatibility mode due to WreckMP detection");
+#endif
             
             // Disable problematic features for multiplayer
             DisableMultiplayerIncompatibleFeatures();

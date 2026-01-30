@@ -53,7 +53,9 @@ namespace MOP
             // Check if WreckMP is active and switch to multiplayer mode if needed
             if (CompatibilityManager.IsWreckMPActive)
             {
+#if DEBUG
                 ModConsole.Log("[BOP] WreckMP detected in ModSetup! Switching to Multiplayer compatibility mode.");
+#endif
                 MopSettings.ForceMultiplayerMode();
                 
                 // Show notification to user
