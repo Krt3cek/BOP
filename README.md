@@ -1,8 +1,9 @@
 # Best Optimization Plugin
 
-[![](https://img.shields.io/github/downloads/Krt3cek/BOP/total?style=for-the-badge)](https://github.com/Krt3cek/BOP/releases)
-[![](https://img.shields.io/github/v/release/Krt3cek/BOP?style=for-the-badge)](https://github.com/Krt3cek/BOP/releases)
-[![](https://img.shields.io/github/license/Krt3cek/BOP?style=for-the-badge)](LICENSE.md)
+[![](https://img.shields.io/badge/BOP-1.0.0-blue?style=for-the-badge&logo=appveyor)](https://github.com/Krt3cek/BOP/releases)
+[![](https://img.shields.io/badge/Best%20Optimization%20Plugin-Fork%20of%20MOP-green?style=for-the-badge&logo=github)](https://github.com/Krt3cek/BOP)
+[![](https://img.shields.io/badge/My%20Summer%20Car-Performance%20Mod-orange?style=for-the-badge&logo=appveyor)](https://github.com/Krt3cek/BOP)
+[![](https://img.shields.io/badge/License-GPL%20v3-blue?style=for-the-badge)](LICENSE.md)
 
 <img align="right" src="images/icon.png" alt="icon" width=128 />
 
