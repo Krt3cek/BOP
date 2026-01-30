@@ -228,7 +228,9 @@ namespace MOP
 
         void Initialize()
         {
+#if DEBUG
             ModConsole.Log("[MOP] Loading MOP...");
+#endif
 
             dumbObjectsParent = new GameObject("MOP_DumbObjects");
             dumbObjectsParent.transform.SetParent(this.transform);
@@ -274,7 +276,9 @@ namespace MOP
                 SkidmarkObject skidmark = new SkidmarkObject(GameObject.Find("Skidmarks"), 0);
                 worldObjectManager.Add(skidmark);
 
+#if DEBUG
                 ModConsole.Log("[MOP] World objects (1) loaded");
+#endif
             }
             catch (Exception ex)
             {
@@ -315,7 +319,9 @@ namespace MOP
                 worldObjectManager.Add("RYKIPOHJA", DisableOn.PlayerInHome);
                 worldObjectManager.Add("COMPUTER", DisableOn.PlayerAwayFromHome, silent: true);
 
+#if DEBUG
                 ModConsole.Log("[MOP] World objects (2) loaded");
+#endif
             }
             catch (Exception ex)
             {
@@ -358,7 +364,9 @@ namespace MOP
                 ExceptionManager.New(ex, false, "PARC_FERME_TRIGGER_FAIL");
             }
 
+#if DEBUG
             ModConsole.Log("[MOP] Satsuma triggers loaded");
+#endif
 
             // Jokke's furnitures.
             // Only renderers are going to be toggled.
@@ -529,7 +537,9 @@ namespace MOP
             try
             {
                 ItemsManager.Instance.Initialize();
+#if DEBUG
                 ModConsole.Log("[MOP] Items class initialized");
+#endif
             }
             catch (Exception ex)
             {
@@ -538,7 +548,9 @@ namespace MOP
 
             HookPreSaveGame();
 
+#if DEBUG
             ModConsole.Log("[MOP] Loading rules...");
+#endif
             foreach (ToggleRule v in RulesManager.Instance.GetList<ToggleRule>())
             {
                 try
@@ -608,7 +620,9 @@ namespace MOP
                 }
             }
 
+#if DEBUG
             ModConsole.Log("[MOP] Rules loading complete!");
+#endif
 
             // Initialzie sector manager
             try
@@ -688,7 +702,9 @@ namespace MOP
             currentControlCoroutine = ControlCoroutine();
             StartCoroutine(currentControlCoroutine);
 
+#if DEBUG
             ModConsole.Log("<color=green>[MOP] MOD LOADED SUCCESFULLY!</color>");
+#endif
             Resources.UnloadUnusedAssets();
             GC.Collect();
         }
@@ -755,7 +771,9 @@ namespace MOP
                     i++;
                 }
 
+#if DEBUG
                 ModConsole.Log($"[MOP] Hooked {i} save points!");
+#endif
             }
             catch (Exception ex)
             {
@@ -1314,7 +1332,7 @@ namespace MOP
                     if (retries >= MaxRetries)
                     {
                         ModConsole.LogError("[MOP] Restart attempt failed. Enabling Safe Mode.");
-                        ModConsole.LogError("[MOP] Please contact mod developer. Please use \"I Found a Bug\" button in MOP settings!");
+                        ModConsole.LogError("[MOP] Please contact mod developer. Please use \"I Found a Bug\" button in BOP settings!");
                         try { ToggleAll(true); } catch { }
                         MopSettings.EnableSafeMode();
                         yield break;
@@ -1340,12 +1358,16 @@ namespace MOP
         /// </summary>
         public void ToggleAll(bool enabled, ToggleAllMode mode = ToggleAllMode.Default)
         {
+#if DEBUG
             ModConsole.Log($"[MOP] Toggling all to {enabled.ToString().ToUpper()} in mode {mode.ToString().ToUpper()}");
+#endif
 
             // Skip most toggle operations if WreckMP is active to prevent null reference exceptions
             if (CompatibilityManager.IsWreckMPActive && mode != ToggleAllMode.OnSave)
             {
+#if DEBUG
                 ModConsole.Log("[MOP] Skipping ToggleAll due to WreckMP being active");
+#endif
                 return;
             }
 
@@ -1551,7 +1573,7 @@ namespace MOP
             yield return new WaitForSeconds(LoadScreenWorkaroundTime);
             if (FsmManager.PlayerInMenu)
             {
-                ModConsole.LogError("[MOP] MOP failed to load in time. Please go into MOP settings and use \"I found a bug\" button.");
+                ModConsole.LogError("[MOP] MOP failed to load in time. Please go into BOP settings and use \"I found a bug\" button.");
                 FinishLoading();
                 Satsuma.Instance?.ToggleActive(true);
                 Satsuma.Instance?.ForceToggleUnityCar(true);

@@ -24,17 +24,17 @@ namespace MOP
     {
         // This class' purpose is to warn Mod Loader Pro users that they're trying to use MOP verison for MSCLoader on Mod Loader Pro.
         public override string ID => "MSCLoader_MOP Loader"; // We're prettinding that this mod is MSCLoader's component - otherwise MOP won't load.
-        public override string Name => "You are using wrong version of MOP!";
+        public override string Name => "You are using wrong version of BOP!";
         public override string Author => "Athlon"; //Your Username
         public override string Version => "1.0"; //Version
-        public override string Description => "If you're seeing this message, that means you installed an incorrect version of MOP!";
+        public override string Description => "If you're seeing this message, that means you installed an incorrect version of BOP!";
         public override byte[] Icon => Properties.Resources.icon;
 
         public void MenuOnLoad()
         {
             if (CompatibilityManager.IsModLoaderPro())
             {
-                ModUI.ShowMessage("You are trying to use MOP version for <color=yellow>MSCLoader</color>.\n\nPlease install MOP version for <color=yellow>Mod Loader Pro</color>!", "MOP - Error");
+                ModUI.ShowMessage("You are trying to use BOP version for <color=yellow>MSCLoader</color>.\n\nPlease install BOP version for <color=yellow>Mod Loader Pro</color>!", "BOP - Error");
             }
         }
     }

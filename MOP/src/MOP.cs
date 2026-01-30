@@ -1,4 +1,5 @@
-﻿// Modern Optimization Plugin
+﻿// Best Optimization Plugin
+// Fork of MOP (Modern Optimization Plugin) by Athlon007
 // Copyright(C) 2019-2022 Athlon
 
 // This program is free software: you can redistribute it and/or modify
@@ -32,8 +33,8 @@ namespace MOP
 {
     public class MOP : Mod
     {
-        public override string ID => "MOP";
-        public override string Name => "MODERN OPTIMIZATION PLUGIN";
+        public override string ID => "BOP";
+        public override string Name => "BEST OPTIMIZATION PLUGIN";
         public override string Author => "Athlon"; //Your Username
         public override string Version => "3.10.4"; //Version
         public const string SubVersion = ""; // NIGHTLY-yyyymmdd | BETA_x | RC_
@@ -52,17 +53,17 @@ namespace MOP
             // Check if WreckMP is active and switch to multiplayer mode if needed
             if (CompatibilityManager.IsWreckMPActive)
             {
-                ModConsole.Log("[MOP] WreckMP detected in ModSetup! Switching to Multiplayer compatibility mode.");
+                ModConsole.Log("[BOP] WreckMP detected in ModSetup! Switching to Multiplayer compatibility mode.");
                 MopSettings.ForceMultiplayerMode();
                 
                 // Show notification to user
                 ModUI.ShowMessage("WreckMP multiplayer mod detected!\n\n" +
-                                 "MOP has automatically switched to Multiplayer compatibility mode.\n" +
+                                 "BOP has automatically switched to Multiplayer compatibility mode.\n" +
                                  "Some features have been disabled to prevent desync issues:\n" +
                                  "• Empty bottle destruction disabled\n" +
                                  "• Empty items removal disabled\n" +
                                  "• Skidmarks disabled for performance\n\n" +
-                                 "This ensures stable multiplayer experience.", "MOP - Multiplayer Mode");
+                                 "This ensures stable multiplayer experience.", "BOP - Multiplayer Mode");
             }
             
             SetupFunction(Setup.OnLoad, OnModLoad);
@@ -109,11 +110,11 @@ namespace MOP
         readonly string[] activeDistanceText = { "Very Close (0.5x)", "Close (0.75x)", "Default (1x)", "Far (2x)", "Very Far (4x)" };
         readonly string[] rulesAutoUpdateFrequencyText = { "Every launch", "Daily", "Every 2 days", "Weekly" };
 
-        const string WelcomeMessage = "Welcome to Modern Optimization Plugin {0}!\n" +
+        const string WelcomeMessage = "Welcome to Best Optimization Plugin {0}!\n" +
                                       "Consider supporting the project using PayPal, or NexusMods.\n\n" +
                                       "<b>BACKUP YOUR SAVE FILES!</b>";
         const string WelcomeMessageFestive = "Merry Christmas and Happy New Year {1}!\n\n" +
-                                             "Welcome to Modern Optimization Plugin{0}!\n" +
+                                             "Welcome to Best Optimization Plugin{0}!\n" +
                                              "Consider supporting the project using PayPal, or on NexusMods.";
 
         private const string FaqLink = "http://kfigura.nl/mop/wiki/#/faq";
@@ -131,8 +132,8 @@ namespace MOP
         {
             if (CompatibilityManager.IsMSCLoader())
             {
-                ModUI.ShowMessage("You are trying to use MOP version for <color=yellow>Mod Loader Pro</color>.\n\n" +
-                                  "Please install MOP version for <color=yellow>MSCLoader</color>!", "MOP - Error");
+                ModUI.ShowMessage("You are trying to use BOP version for <color=yellow>Mod Loader Pro</color>.\n\n" +
+                                  "Please install BOP version for <color=yellow>MSCLoader</color>!", "BOP - Error");
                 return;
             }
         }
@@ -195,7 +196,7 @@ namespace MOP
             KeepRunningInBackground = modSettings.AddToggle("keepRunningInBackground", "RUN GAME IN BACKGROUND", true, MopSettings.ToggleBackgroundRunning);
             KeepRunningInBackground.AddTooltip("If unchecked, the game will\nbe paused when the game's\nwindow looses focus.");
             DynamicDrawDistance = modSettings.AddToggle("dynamicDrawDistance", "DYNAMIC DRAW DISTANCE", true);
-            DynamicDrawDistance.AddTooltip("MOP will adjust the draw distance\naccording to the current situation\n(ex. lower it while inside of a building).");
+            DynamicDrawDistance.AddTooltip("BOP will adjust the draw distance\naccording to the current situation\n(ex. lower it while inside of a building).");
             modSettings.AddButton("changeResolution", "RESOLUTION", () => { Resolution.gameObject.SetActive(!Resolution.gameObject.activeSelf); });
 
             Resolution = modSettings.AddRadioButtons("resolution", "RESOLUTION", selected, () =>
@@ -276,7 +277,7 @@ namespace MOP
             KeepRunningInBackground = Settings.AddCheckBox(this, "keepRunningInBackground", "RUN GAME IN BACKGROUND", true, MopSettings.ToggleBackgroundRunning);
             Settings.AddText(this, "If unchecked, the game will be paused when the game's window looses focus.");
             DynamicDrawDistance = Settings.AddCheckBox(this, "dynamicDrawDistance", "DYNAMIC DRAW DISTANCE", true);
-            Settings.AddText(this, "MOP will adjust the draw distance, according to the current situation\n(ex. lower it while inside of a building).");
+            Settings.AddText(this, "BOP will adjust the draw distance, according to the current situation\n(ex. lower it while inside of a building).");
 
             GameResolution = Settings.AddDropDownList(this, "", "RESOLUTION", resolutions.ToArray(), selected, () =>
             {
@@ -286,7 +287,7 @@ namespace MOP
                 int width = int.Parse(s.Split('X')[0]);
                 int height = int.Parse(s.Split('X')[1]);
                 Screen.SetResolution(width, height, Screen.fullScreen);
-                ModConsole.Log("[MOP] Setting resolution to " + s);
+                ModConsole.Log($"[BOP] Setting resolution to " + s);
             });
 
 
@@ -348,14 +349,14 @@ namespace MOP
                 ModPrompt prompt = ModPrompt.CreateCustomPrompt();
                 prompt.DestroyOnDisable = false;
                 prompt.Text = $"{message}";
-                prompt.Title = "MOP";
+                prompt.Title = "BOP";
                 prompt.AddButton("OK", () => { GameObject.Destroy(prompt.gameObject); });
                 var btnDonate = prompt.AddButton("<color=#169BD7>DONATE</color>", () => { OnWelcomeDonateClick(); GameObject.Destroy(prompt.gameObject); });
                 var btnChangelog = prompt.AddButton("CHANGELOG", () => {
-                    ModPrompt.CreatePrompt(GetChangelog(true), $"MOP {ModVersion.Replace("_", " ")} - Changelog", () => { prompt.gameObject.SetActive(true); });
+                    ModPrompt.CreatePrompt(GetChangelog(true), $"BOP {ModVersion.Replace("_", " ")} - Changelog", () => { prompt.gameObject.SetActive(true); });
                 });
 #else
-                ModUI.ShowCustomMessage(message, "MOP",
+                ModUI.ShowCustomMessage(message, "BOP",
                     new MsgBoxBtn[] {
                         ModUI.CreateMessageBoxBtn("OK"),
                         ModUI.CreateMessageBoxBtn(
@@ -365,7 +366,7 @@ namespace MOP
                             new Color(1, 1, 1)),
                         ModUI.CreateMessageBoxBtn("CHANGELOG", () =>
                         {
-                            ModUI.ShowMessage(GetChangelog(true), $"MOP {ModVersion.Replace("_", " ")} - Changelog ");
+                            ModUI.ShowMessage(GetChangelog(true), $"BOP {ModVersion.Replace("_", " ")} - Changelog ");
                         }, true) },
                     new MsgBoxBtn[] { });
                 // We must add an extra empty MsgBoxBtn array,
@@ -379,14 +380,14 @@ namespace MOP
             GC.Collect();
 
             // Create BugReporter early since it might be needed for game restart
-            GameObject bugReporter = new GameObject("MOP_BugReporter");
+            GameObject bugReporter = new GameObject("BOP_BugReporter");
             bugReporter.AddComponent<BugReporter>();
 
             MopSettings.Restarts++;
             if (MopSettings.Restarts > MopSettings.MaxRestarts && !MopSettings.RestartWarningShown)
             {
                 MopSettings.RestartWarningShown = true;
-                ModUI.ShowMessage($"The game has been reloaded over {MopSettings.MaxRestarts} times, which may cause issues with the game's physics.", "MOP");
+                ModUI.ShowMessage($"The game has been reloaded over {MopSettings.MaxRestarts} times, which may cause issues with the game's physics.", "BOP");
             }
 
             if (MopSettings.GameFixStatus == GameFixStatus.DoFix)
@@ -406,7 +407,7 @@ namespace MOP
 
             if (!string.IsNullOrEmpty(MOP.SubVersion))
             {
-                ModConsole.Log("<size=60><color=magenta>\n\nWARNING!\nYOU ARE USING A PRE-RELEASE VERSION OF MOP!\n\n</color></size>");
+                ModConsole.Log("<size=60><color=magenta>\n\nWARNING!\nYOU ARE USING A PRE-RELEASE VERSION OF BOP!\n\n</color></size>");
             }
 
             LoadAssetBundle();
@@ -428,12 +429,12 @@ namespace MOP
 
             if (CompatibilityManager.IsConfilctingModPresent(out string modName))
             {
-                ModConsole.LogError($"MOP could not be loaded, because the following mod is present: <color=yellow>{modName}</color>");
+                ModConsole.LogError($"BOP could not be loaded, because the following mod is present: <color=yellow>{modName}</color>");
                 return;
             }
 
-            // Create MOP game object
-            GameObject mop = new GameObject("MOP");
+            // Create BOP game object
+            GameObject mop = new GameObject("BOP");
 
             // Add Hypervisor class
             mop.AddComponent<Hypervisor>();
@@ -451,7 +452,7 @@ namespace MOP
         {
             if (ModLoader.CurrentScene != CurrentScene.MainMenu)
             {
-                ModUI.ShowMessage("You can only force update while in the main menu.");
+                ModUI.ShowMessage("You can only force update while in the main menu.", "BOP");
                 return;
             }
 
@@ -541,8 +542,8 @@ namespace MOP
 
             ModUI.ShowYesNoMessage($"This will open the following link:\n" +
                                 $"<color=yellow>{url}</color>\n\n" +
-                                $"Are you sure you want to continue?",
-                                "MOP",
+                                "Are you sure you want to continue?",
+                                "BOP",
                                 () => System.Diagnostics.Process.Start(url));
         }
 
@@ -593,7 +594,7 @@ namespace MOP
 
         string GetFooter()
         {
-            return $"<color=yellow>MOP</color> {ModVersion.Replace("_", " ")}\n" +
+            return $"<color=yellow>BOP</color> {ModVersion.Replace("_", " ")}\n" +
 #if PRO
                     $"<color=yellow>Mod Loader Pro</color> {ModLoader.Version}\n" +
 #else
@@ -608,7 +609,7 @@ namespace MOP
             if (!RulesAutoUpdate.GetValue())
             {
                 ModUI.ShowMessage("<color=yellow>Warning!</color>\n\n" +
-                                  "Disabling rule files auto update means newly installed mods might not work, or MOP might break.", "MOP");
+                                  "Disabling rule files auto update means newly installed mods might not work, or BOP might break.", "BOP");
             }
         }
 
@@ -625,14 +626,14 @@ namespace MOP
 #endif
                     if (bundle == null)
                     {
-                        ModConsole.LogError("[MOP] Failed to load asset bundle - bundle is null");
+                        ModConsole.LogError("[BOP] Failed to load asset bundle - bundle is null");
                         return null;
                     }
                     
                     MopLoadScreenPrefab = bundle.LoadAsset<GameObject>("MOP_Canvas.prefab");
                     if (MopLoadScreenPrefab == null)
                     {
-                        ModConsole.LogError("[MOP] Failed to load MOP_Canvas.prefab from asset bundle");
+                        ModConsole.LogError("[BOP] Failed to load MOP_Canvas.prefab from asset bundle");
                         return null;
                     }
                     
@@ -640,7 +641,7 @@ namespace MOP
                 }
                 catch (Exception ex)
                 {
-                    ModConsole.LogError($"[MOP] Exception loading asset bundle: {ex.Message}");
+                    ModConsole.LogError($"[BOP] Exception loading asset bundle: {ex.Message}");
                     return null;
                 }
             }

@@ -82,7 +82,7 @@ namespace MOP.Common
             string errorMessage = 
                 $"[MOP] An error has occured. The log file has been saved into:\n\n" +
                 $"{logFilePath}\nMessage: {message}\n\n" +
-                $"Please go into MOP Settings, and click \"<b>I FOUND A BUG</b>\" button, in order to generate the bug report. " +
+                $"Please go into BOP Settings, and click \"<b>I FOUND A BUG</b>\" button, in order to generate the bug report. " +
                 $"Then please follow the provided instructions.\n";
 
             if (isCritical || erorrsContainer.Contains(message))
@@ -171,7 +171,7 @@ namespace MOP.Common
             sb.Append($"RAM: ").Append(SystemInfo.systemMemorySize).AppendLine(" MB");
             sb.Append($"GPU: ").Append(SystemInfo.graphicsDeviceName).Append(" (").Append(SystemInfo.graphicsMemorySize).AppendLine(" MB VRAM)");
             sb.AppendLine();
-            sb.AppendLine("=== MOP SETTINGS ===");
+            sb.AppendLine("=== BOP SETTINGS ===");
             sb.AppendLine(); 
             sb.Append($"ActiveDistance: ").Append(MOP.ActiveDistance.GetValue()).AppendLine();
             sb.Append($"ActiveDistanceMultiplier: ").Append(MopSettings.ActiveDistanceMultiplicationValue).AppendLine();

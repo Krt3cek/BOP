@@ -431,7 +431,9 @@ namespace MOP
                 ExceptionManager.New(ex, false, "MAILBOX_ERROR");
             }
 
+#if DEBUG
             ModConsole.Log("[MOP] Finished applying fixes");
+#endif
         }
 
         /// <summary>

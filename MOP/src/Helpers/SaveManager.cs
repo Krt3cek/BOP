@@ -654,7 +654,9 @@ namespace MOP.Helpers
             // It would be really weird, if someone installed a single part, not bolt it, then have that error appear.
             if (installedCount < MinimumNumberOfPartsToCheckMSCEditorTampering)
             {
+#if DEBUG
                 ModConsole.Log($"[MOP] Only {installedCount} parts are installed.");
+#endif
                 return false;
             }
 

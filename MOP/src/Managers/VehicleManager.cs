@@ -75,7 +75,9 @@ namespace MOP.Managers
                 {
                     if (GameObject.Find(vehicle) == null)
                     {
+#if DEBUG
                         ModConsole.Log("[MOP] Unable to locate vehicle " + vehicle);
+#endif
                         continue;
                     }
 
@@ -125,7 +127,9 @@ namespace MOP.Managers
                 }
             }
 
+#if DEBUG
             ModConsole.Log("[MOP] Vehicles initialized");
+#endif
         }
 
         public Vehicle Add(Vehicle vehicle)

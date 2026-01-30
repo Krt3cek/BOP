@@ -1,4 +1,4 @@
-# Modern Optimization Plugin
+# Best Optimization Plugin
 
 [![](https://img.shields.io/github/downloads/Athlon007/MOP/total?style=for-the-badge)](https://github.com/Athlon007/MOP/releases)
 [![](https://img.shields.io/github/v/release/Athlon007/MOP?style=for-the-badge)](https://github.com/Athlon007/MOP/releases)
@@ -7,11 +7,11 @@
 
 <img align="right" src="images/icon.png" alt="icon" width=128 />
 
-MOP (Modern Optimization Plugin) is the ultimate performance enhancing project for My Summer Car. Quickly and easily improve FPS of MSC!
+BOP (Best Optimization Plugin) is a fork of [MOP (Modern Optimization Plugin)](https://github.com/Athlon007/MOP) and the ultimate performance enhancing project for My Summer Car. Quickly and easily improve FPS of MSC!
 
 The **only** mod that improves framerate seamlessly - without user having to do any configuration, pressing buttons, or any other magic tricks! Just install the mod and it's ready to go.
 
-Originates from [KruFPS](https://github.com/Krutonium/KruFPS).
+Originally based on [MOP by Athlon007](https://github.com/Athlon007/MOP), which originates from [KruFPS](https://github.com/Krutonium/KruFPS).
 
 **Results may vary!**
 
@@ -23,7 +23,7 @@ Originates from [KruFPS](https://github.com/Krutonium/KruFPS).
 ## Installation
 
 1. Download the mod from [GitHub](https://github.com/Athlon007/MOP/releases) or [NexusMods](https://www.nexusmods.com/mysummercar/mods/146/).
-2. Navigate to your MSC Mod Loader Mods folder (ex. C:\Steam\steamapps\common\My Summer Car\Mods) and paste the MOP.dll there.
+2. Navigate to your MSC Mod Loader Mods folder (ex. C:\Steam\steamapps\common\My Summer Car\Mods) and paste the BOP.dll there.
 3. ???
 4. Profit!
 
@@ -41,7 +41,7 @@ Beta builds are going to be released on GitHub with a tag "pre-release".
 
 ## Reporting Issues
 
-If you found a bug in MOP and you would like to report it, the first thing you should do is to go into MSC, go to MOP settings and click "**I FOUND A BUG**".
+If you found a bug in BOP and you would like to report it, the first thing you should do is to go into MSC, go to BOP settings and click "**I FOUND A BUG**".
 
 To send a bug report, please either [use GitHub](https://github.com/Athlon007/MOP/issues/new?assignees=&labels=bug&template=template-bug-report.md&title=Bug%20Report), or send an e-mail to [bugreport@kkmr.pl](mailto:bugreport@kkmr.pl).
 
@@ -53,6 +53,7 @@ This program is distributed under GNU General Public License v3. Feel free to us
 
 ## Credits
 
+- **[Athlon007](https://github.com/Athlon007)** - Original [MOP (Modern Optimization Plugin)](https://github.com/Athlon007/MOP) creator and maintainer
 - [Krutonium](https://github.com/Krutonium) - original [KruFPS](https://github.com/Krutonium/KruFPS) creator, and the KruFPS contributors:
   - RedJohn260
   - EPS
@@ -68,7 +69,7 @@ This program is distributed under GNU General Public License v3. Feel free to us
 
 ## Support
 
-Do you like MOP? Consider buying me a pizza :)
+Do you like BOP? Consider buying me a pizza :)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/O4O2FZ220)
 

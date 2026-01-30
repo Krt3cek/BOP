@@ -1039,7 +1039,9 @@ namespace MOP.Vehicles.Cases
                 satsumaBoltsAntiReloads[i]?.Unglue();
             }
 
+            #if DEBUG
             ModConsole.Log($"[MOP] Found {brokens.Count} broken SatsumaBoltsAntiReload.");
+#endif
             foreach (var broken in brokens)
             {
                 satsumaBoltsAntiReloads.Remove(broken);
@@ -1178,7 +1180,9 @@ namespace MOP.Vehicles.Cases
             // Fuel line.
             transform.Find("MiscParts/fuel line(xxxxx)").gameObject.AddComponent<SatsumaBoltsAntiReload>();
 
+            #if DEBUG
             ModConsole.Log($"[MOP] Found {satsumaBoltsAntiReloads.Count} bolts.");
+#endif
             // If there's less bolts found than the value, warn user.
             if (satsumaBoltsAntiReloads.Count < MinimumBolts)
             {

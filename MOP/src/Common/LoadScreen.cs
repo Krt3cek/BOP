@@ -1,4 +1,5 @@
-﻿// Modern Optimization Plugin
+﻿// Best Optimization Plugin
+// Fork of MOP (Modern Optimization Plugin) by Athlon007
 // Copyright(C) 2019-2022 Athlon
 
 // This program is free software: you can redistribute it and/or modify
@@ -119,14 +120,14 @@ namespace MOP.Common
                     "LOADINP MOG...",
                     "...POM GNIDAOL",
                     "LDNG MP...",
-                    "WOADING MOP UWU",
-                    "MOP?",
-                    "UNLOADING MOP...",
-                    "ŁADOWANIE MOP...", // Polish
-                    "MOP LADEN...", // Dutch
-                    "LADEN VON MOP...", // German
-                    "MOP-I LAADIMINE...", // Estonian
-                    "LADATAAN MOP..." // Finnish
+                    "WOADING BOP UWU",
+                    "BOP?",
+                    "UNLOADING BOP...",
+                    "ŁADOWANIE BOP...", // Polish
+                    "BOP LADEN...", // Dutch
+                    "LADEN VON BOP...", // German
+                    "BOP-I LAADIMINE...", // Estonian
+                    "LADATAAN BOP..." // Finnish
                 };
                 return foolish[UnityEngine.Random.Range(0, foolish.Length)];
             }
@@ -137,7 +138,7 @@ namespace MOP.Common
                 return "HAVE A NICE DAY :)";
             }
 
-            return "LOADING MOP...";
+            return "LOADING BOP...";
         }
     }
 }
