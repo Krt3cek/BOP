@@ -229,10 +229,10 @@ namespace MOP
         void Initialize()
         {
 #if DEBUG
-            ModConsole.Log("[MOP] Loading MOP...");
+            ModConsole.Log("[BOP] Loading BOP...");
 #endif
 
-            dumbObjectsParent = new GameObject("MOP_DumbObjects");
+            dumbObjectsParent = new GameObject("BOP_DumbObjects");
             dumbObjectsParent.transform.SetParent(this.transform);
 
             // Initialize the worldObjectManager list
@@ -277,7 +277,7 @@ namespace MOP
                 worldObjectManager.Add(skidmark);
 
 #if DEBUG
-                ModConsole.Log("[MOP] World objects (1) loaded");
+                ModConsole.Log("[BOP] World objects (1) loaded");
 #endif
             }
             catch (Exception ex)
@@ -320,7 +320,7 @@ namespace MOP
                 worldObjectManager.Add("COMPUTER", DisableOn.PlayerAwayFromHome, silent: true);
 
 #if DEBUG
-                ModConsole.Log("[MOP] World objects (2) loaded");
+                ModConsole.Log("[BOP] World objects (2) loaded");
 #endif
             }
             catch (Exception ex)
@@ -365,7 +365,7 @@ namespace MOP
             }
 
 #if DEBUG
-            ModConsole.Log("[MOP] Satsuma triggers loaded");
+            ModConsole.Log("[BOP] Satsuma triggers loaded");
 #endif
 
             // Jokke's furnitures.
@@ -538,7 +538,7 @@ namespace MOP
             {
                 ItemsManager.Instance.Initialize();
 #if DEBUG
-                ModConsole.Log("[MOP] Items class initialized");
+                ModConsole.Log("[BOP] Items class initialized");
 #endif
             }
             catch (Exception ex)
@@ -549,7 +549,7 @@ namespace MOP
             HookPreSaveGame();
 
 #if DEBUG
-            ModConsole.Log("[MOP] Loading rules...");
+            ModConsole.Log("[BOP] Loading rules...");
 #endif
             foreach (ToggleRule v in RulesManager.Instance.GetList<ToggleRule>())
             {
@@ -558,7 +558,7 @@ namespace MOP
                     GameObject g = GameObject.Find(v.ObjectName);
                     if (g == null)
                     {
-                        ModConsole.LogError($"[MOP] Couldn't find {v.ToggleMode} {v.ObjectName}");
+                        ModConsole.LogError($"[BOP] Couldn't find {v.ToggleMode} {v.ObjectName}");
                         continue;
                     }
 
@@ -621,7 +621,7 @@ namespace MOP
             }
 
 #if DEBUG
-            ModConsole.Log("[MOP] Rules loading complete!");
+            ModConsole.Log("[BOP] Rules loading complete!");
 #endif
 
             // Initialzie sector manager
@@ -703,7 +703,7 @@ namespace MOP
             StartCoroutine(currentControlCoroutine);
 
 #if DEBUG
-            ModConsole.Log("<color=green>[MOP] MOD LOADED SUCCESFULLY!</color>");
+            ModConsole.Log("<color=green>[BOP] MOD LOADED SUCCESFULLY!</color>");
 #endif
             Resources.UnloadUnusedAssets();
             GC.Collect();
@@ -772,7 +772,7 @@ namespace MOP
                 }
 
 #if DEBUG
-                ModConsole.Log($"[MOP] Hooked {i} save points!");
+                ModConsole.Log($"[BOP] Hooked {i} save points!");
 #endif
             }
             catch (Exception ex)
@@ -1359,14 +1359,14 @@ namespace MOP
         public void ToggleAll(bool enabled, ToggleAllMode mode = ToggleAllMode.Default)
         {
 #if DEBUG
-            ModConsole.Log($"[MOP] Toggling all to {enabled.ToString().ToUpper()} in mode {mode.ToString().ToUpper()}");
+            ModConsole.Log($"[BOP] Toggling all to {enabled.ToString().ToUpper()} in mode {mode.ToString().ToUpper()}");
 #endif
 
             // Skip most toggle operations if WreckMP is active to prevent null reference exceptions
             if (CompatibilityManager.IsWreckMPActive && mode != ToggleAllMode.OnSave)
             {
 #if DEBUG
-                ModConsole.Log("[MOP] Skipping ToggleAll due to WreckMP being active");
+                ModConsole.Log("[BOP] Skipping ToggleAll due to WreckMP being active");
 #endif
                 return;
             }

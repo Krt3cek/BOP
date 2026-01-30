@@ -36,7 +36,7 @@ namespace MOP
         public override string ID => "BOP";
         public override string Name => "BEST OPTIMIZATION PLUGIN";
         public override string Author => "Athlon"; //Your Username
-        public override string Version => "3.10.4"; //Version
+        public override string Version => "1.0.0"; //Version
         public const string SubVersion = ""; // NIGHTLY-yyyymmdd | BETA_x | RC_
 #if PRO
         public const string Edition = "Mod Loader Pro";
@@ -59,10 +59,7 @@ namespace MOP
                 // Show notification to user
                 ModUI.ShowMessage("WreckMP multiplayer mod detected!\n\n" +
                                  "BOP has automatically switched to Multiplayer compatibility mode.\n" +
-                                 "Some features have been disabled to prevent desync issues:\n" +
-                                 "• Empty bottle destruction disabled\n" +
-                                 "• Empty items removal disabled\n" +
-                                 "• Skidmarks disabled for performance\n\n" +
+                                 "Some features have been disabled to prevent desync issues\n" +
                                  "This ensures stable multiplayer experience.", "BOP - Multiplayer Mode");
             }
             

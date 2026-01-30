@@ -73,7 +73,7 @@ namespace MOP.Vehicles
         /// <param name="gameObjectName"></param>
         public Vehicle(string gameObjectName)
         {
-            // gameObject the object by name
+            // Find the gameObject the object by name
             gameObject = GameObject.Find(gameObjectName);
 
             // Use Resources.FindObjectsOfTypeAll method, if the vehicle was not found.

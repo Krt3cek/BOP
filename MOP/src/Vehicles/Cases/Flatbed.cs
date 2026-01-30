@@ -1,4 +1,5 @@
-﻿// Modern Optimization Plugin
+﻿// Best Optimization Plugin
+// Fork of MOP (Modern Optimization Plugin) by Athlon007
 // Copyright(C) 2019-2022 Athlon
 
 // This program is free software: you can redistribute it and/or modify
