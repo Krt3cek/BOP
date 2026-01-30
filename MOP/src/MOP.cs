@@ -57,10 +57,13 @@ namespace MOP
                 MopSettings.ForceMultiplayerMode();
                 
                 // Show notification to user
-                ModUI.ShowMessage("WreckMP multiplayer mod detected!\n\n" +
-                                 "BOP has automatically switched to Multiplayer compatibility mode.\n" +
-                                 "Some features have been disabled to prevent desync issues\n" +
-                                 "This ensures stable multiplayer experience.", "BOP - Multiplayer Mode");
+                ModUI.ShowMessage(
+                    "WreckMP multiplayer mod detected!\n\n" +
+                    "BOP has automatically switched to Multiplayer compatibility mode.\n" +
+                    "Some features have been disabled to prevent desync issues.\n" +
+                    "This ensures stable multiplayer experience.",
+                    "BOP - Multiplayer Mode"
+                );
             }
             
             SetupFunction(Setup.OnLoad, OnModLoad);
@@ -82,7 +85,7 @@ namespace MOP
 
         // Settings
 #if PRO
-        public override string UpdateLink => "https://github.com/Athlon007/MOP";
+        public override string UpdateLink => "https://github.com/Krt3cek/BOP";
 
         static internal SettingSlider ActiveDistance, FramerateLimiter, ShadowDistance, RulesAutoUpdateFrequency;
         static internal SettingRadioButtons PerformanceModes, Resolution;
@@ -119,7 +122,7 @@ namespace MOP
         private const string KofiLink = "https://ko-fi.com/athlon";
         private const string WikiLink = "http://kfigura.nl/mop/wiki/#/";
         private const string HomepageLink = "http://kfigura.nl/";
-        private const string GitHubLink = "https://github.com/Athlon007/MOP";
+        private const string GitHubLink = "https://github.com/Krt3cek/BOP";
         private const string NexusModsLink = "https://www.nexusmods.com/mysummercar/mods/146";
         private const string RuleFilesWikiLink = "http://kfigura.nl/mop/wiki/#/rulefiles";
 
