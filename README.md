@@ -49,14 +49,6 @@ Originally based on [MOP by Athlon007](https://github.com/Athlon007/MOP), which 
 3. ???
 4. Profit!
 
-## Mod Compatibility
-
-Visit the [Compatibility Wiki](http://kfigura.nl/mop/wiki/#/compatibility) to see if your mod is supported. BOP maintains the same compatibility as the original MOP.
-
-## Questions
-
-Got any questions? Please refer to the [FAQ](http://kfigura.nl/mop/wiki/#/faq) first! The FAQ is still relevant as BOP preserves all MOP functionality.
-
 ## Preview Builds
 
 Beta builds will be released on GitHub with a tag "pre-release". Check the [BOP GitHub](https://github.com/Krt3cek/BOP) for the latest releases.
@@ -65,7 +57,7 @@ Beta builds will be released on GitHub with a tag "pre-release". Check the [BOP 
 
 If you found a bug in BOP and you would like to report it, the first thing you should do is to go into MSC, go to **BOP settings** and click "**I FOUND A BUG**".
 
-To send a bug report, please either [use GitHub](https://github.com/Krt3cek/BOP/issues/new?assignees=&labels=bug&template=template-bug-report.md&title=Bug%20Report), or send an e-mail to [bugreport@kkmr.pl](mailto:bugreport@kkmr.pl).
+To send a bug report, please [use GitHub](https://github.com/Krt3cek/BOP/issues/new?assignees=&labels=bug&template=template-bug-report.md&title=Bug%20Report).
 
 Note: Don't even bother if you use a pirated copy of the game, as pirated game copies are NOT SUPPORTED.
 
